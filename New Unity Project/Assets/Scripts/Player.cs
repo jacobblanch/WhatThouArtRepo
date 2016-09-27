@@ -9,7 +9,7 @@ public class Player : MonoBehaviour {
 
 	public float jumpPower;
 
-	float distToGround = 0.4f;
+	float distToGround = 0.7f;
 
 	float jumpTime = 0.5f;
 
@@ -49,8 +49,11 @@ public class Player : MonoBehaviour {
 
 	public void OnCollisionEnter (Collision otherObject) {
 		if (otherObject.gameObject.tag == "GoombaStomp") {
-			rb.AddForce (Vector2.up * jumpPower/2);
+			rb.AddForce (Vector2.up * jumpPower);
 			Destroy (otherObject.gameObject);
-		}
+		} else if (otherObject.gameObject.tag == "GoombaHurt")
+        {
+            Destroy(this.gameObject);
+        }
 	}
 }
