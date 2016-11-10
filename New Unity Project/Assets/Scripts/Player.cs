@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
 
@@ -51,9 +52,13 @@ public class Player : MonoBehaviour {
 		if (otherObject.gameObject.tag == "GoombaStomp") {
 			rb.AddForce (Vector2.up * jumpPower);
 			Destroy (otherObject.gameObject);
-		} else if (otherObject.gameObject.tag == "GoombaHurt")
-        {
-            Destroy(this.gameObject);
-        }
+		} else if (otherObject.gameObject.tag == "GoombaHurt") {
+			//Destroy (this.gameObject);
+			SceneManager.LoadScene("LoseScreen");
+		} else if (otherObject.gameObject.tag == "EndOfLevel") {
+			SceneManager.LoadScene ("WinScreen");
+		} else if (otherObject.gameObject.tag == "Pit") {
+			SceneManager.LoadScene("LoseScreen");
+		}
 	}
 }

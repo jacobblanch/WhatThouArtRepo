@@ -7,18 +7,28 @@ public class EnemyController : MonoBehaviour {
 
 	public GameObject head;
 
+	public GameObject player;
+
+	float distance;
+
 	// Use this for initialization
 	void Start () {
-	
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
-		Movement ();
+
+		Debug.Log ("pew");
 
 		if (head == false) {
 			Destroy (this.gameObject);
+		}
+
+		float distance = Vector3.Distance (player.transform.position, transform.position);
+
+		if (distance <= 15) {
+			Movement ();
 		}
 
 	}
